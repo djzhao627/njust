@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <title>开课情况统计</title>
+    <link rel="shortcut icon" href="http://gsmis.njust.edu.cn/images/favicon.ico">
+</head>
+
+<body style="height: 100%; margin: 0; padding: 10px;">
+    <center>
+        <h2>第五至七周各院系开课情况统计</h2>
+        (<a href="index.html">学生人数统计</a>)
+    </center>
+    <div style="height: 5%"></div>
+    <div id="week5" style="height: 88%"></div>
+    <div style="height: 5%"></div>
+    <div style="height: 5%"></div>
+    <div id="week6" style="height: 88%"></div>
+    <div style="height: 5%"></div>
+    <div style="height: 5%"></div>
+    <div id="week7" style="height: 88%"></div>
+    <div style="height: 5%"></div>
+    <div style="height: 5%"></div>
+    <div id="week5-7" style="height: 88%"></div>
+    <div style="height: 5%"></div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+    <script type="text/javascript">
+        var week5 = document.getElementById("week5");
+        var w5 = echarts.init(week5);
+        option = null;
+        option = {
+            title: {
+                text: '第五周各院系开课数统计'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['开课总数']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                axisLabel: {
+                    rotate: 60,
+                },
+                type: 'category',
+                data: ['材料科学与工程学院', '电子工程与光电技术学院', '公共事务学院', '化工学院', '环境与生物工程学院', '机械工程学院', '计算机科学与工程学院', '经济管理学院', '理学院', '马克思主义学院', '能源与动力工程学院', '设计艺术与传媒学院', '外国语学院', '知识产权学院', '自动化学院']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '总开课数',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    data: [5, 7, 11, 0, 0, 6, 16, 49, 22, 4, 11, 13, 45, 3, 2]
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            w5.setOption(option, true);
+        }
+
+        var week6 = document.getElementById("week6");
+        var w6 = echarts.init(week6);
+        option = null;
+        option = {
+            title: {
+                text: '第六周各院系开课数统计'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['开课总数']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                axisLabel: {
+                    rotate: 60,
+                },
+                type: 'category',
+                data: ['材料科学与工程学院', '电子工程与光电技术学院', '公共事务学院', '化工学院', '环境与生物工程学院', '机械工程学院', '计算机科学与工程学院', '经济管理学院', '理学院', '马克思主义学院', '能源与动力工程学院', '设计艺术与传媒学院', '外国语学院', '知识产权学院', '自动化学院']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '总开课数',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    data: [5, 34, 11, 14, 2, 25, 16, 52, 31, 7, 12, 13, 46, 22, 18]
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            w6.setOption(option, true);
+        }
+
+        var week7 = document.getElementById("week7");
+        var w7 = echarts.init(week7);
+        option = null;
+        option = {
+            title: {
+                text: '第七周各院系开课数统计'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['开课总数']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                axisLabel: {
+                    rotate: 60,
+                },
+                type: 'category',
+                data: ['材料科学与工程学院', '电子工程与光电技术学院', '公共事务学院', '化工学院', '环境与生物工程学院', '机械工程学院', '计算机科学与工程学院', '经济管理学院', '理学院', '马克思主义学院', '能源与动力工程学院', '设计艺术与传媒学院', '外国语学院', '知识产权学院', '自动化学院']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '总开课数',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    data: [5, 34, 11, 14, 2, 26, 16, 54, 36, 11, 12, 13, 56, 24, 23]
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            w7.setOption(option, true);
+        }
+
+        var week5_7 = document.getElementById("week5-7");
+        var w5_7 = echarts.init(week5_7);
+        option = null;
+        option = {
+            title: {
+                text: '第五—七周各院系开课总数统计'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['开课总数']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                axisLabel: {
+                    rotate: 60,
+                },
+                type: 'category',
+                data: ['材料科学与工程学院', '电子工程与光电技术学院', '公共事务学院', '化工学院', '环境与生物工程学院', '机械工程学院', '计算机科学与工程学院', '经济管理学院', '理学院', '马克思主义学院', '能源与动力工程学院', '设计艺术与传媒学院', '外国语学院', '知识产权学院', '自动化学院']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '总开课数',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    data: [5, 34, 11, 14, 2, 26, 16, 58, 36, 11, 12, 13, 56, 24, 23]
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            w5_7.setOption(option, true);
+        }
+    </script>
+</body>
+
+</html>
