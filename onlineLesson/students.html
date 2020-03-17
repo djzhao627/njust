@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <title>开课情况统计</title>
+    <link rel="shortcut icon" href="http://gsmis.njust.edu.cn/images/favicon.ico">
+</head>
+
+<body style="height: 100%; margin: 0; padding: 10px;">
+    <center>
+        <h2>第五至七周学生人数情况统计</h2>
+         (<a href="index.html">回首页</a>)
+    </center>
+    <div style="height: 5%"></div>
+    <div id="week5" style="height: 88%"></div>
+    <div style="height: 5%"></div>
+    <div style="height: 5%"></div>
+    <div id="week6" style="height: 88%"></div>
+    <div style="height: 5%"></div>
+    <div style="height: 5%"></div>
+    <div id="week7" style="height: 88%"></div>
+    <div style="height: 5%"></div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+    <script type="text/javascript">
+        var week5 = document.getElementById("week5");
+        var w5 = echarts.init(week5);
+        option = null;
+        option = {
+            title: {
+                text: '第五周学生人数统计'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['1-3节', '4-5节', '6-7节', '8-10节', '11-13节']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '1-3节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [340, 811, 432, 616, 509, 552, 551]
+                },
+                {
+                    name: '4-5节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [179, 291, 206, 343, 82, 61, 2]
+                },
+                {
+                    name: '6-7节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [157, 370, , 416, 306, 316, 61]
+                },
+                {
+                    name: '8-10节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [315, 363, , 502, 237, , ,]
+                },
+                {
+                    name: '11-13节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [568, 403, 532, 351, 158, 244, 111]
+                },
+                {
+                    name: '总计',
+                    type: 'line',
+                    lineStyle:{
+                        opacity : 0,
+                    },
+                    label:{
+                        show: true,
+                        textStyle:{
+                            color:'#345'
+                        }
+                    },
+                    data: [1559, 2238, 1170, 2228, 1292, 1173, 725]
+                }
+            ]
+        };;
+        if (option && typeof option === "object") {
+            w5.setOption(option, true);
+        }
+        var week6 = document.getElementById("week6");
+        var w6 = echarts.init(week6);
+        option = null;
+        option = {
+            title: {
+                text: '第六周学生人数统计'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['1-3节', '4-5节', '6-7节', '8-10节', '11-13节']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '1-3节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [421, 923, 503, 714, 677, 552, 538]
+                },
+                {
+                    name: '4-5节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [326, 482, 414, 515, 171, 61, 2]
+                },
+                {
+                    name: '6-7节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [308, 726, , 668, 401, 316, 61]
+                },
+                {
+                    name: '8-10节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [541, 506, , 697, 374, 22, ,]
+                },
+                {
+                    name: '11-13节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [624, 315, 414, 383, 421, 244, 111]
+                },
+                {
+                    name: '总计',
+                    type: 'line',
+                    lineStyle:{
+                        opacity : 0,
+                    },
+                    label:{
+                        show: true,
+                        textStyle:{
+                            color:'#345'
+                        }
+                    },
+                    data: [2220, 2952, 1331, 2977, 2044, 1195, 712]
+                }
+            ]
+        };;
+        if (option && typeof option === "object") {
+            w6.setOption(option, true);
+        }
+        var week7 = document.getElementById("week7");
+        var w7 = echarts.init(week7);
+        option = null;
+        option = {
+            title: {
+                text: '第七周学生人数统计'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['1-3节', '4-5节', '6-7节', '8-10节', '11-13节']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '1-3节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [482, 941, 553, 810, 715, 672, 658]
+                },
+                {
+                    name: '4-5节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [337, 517, 423, 515, 171, 67, ,]
+                },
+                {
+                    name: '6-7节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [313, 727, , 579, 401, 316, 61]
+                },
+                {
+                    name: '8-10节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [574, 625, , 737, 407, 22, ,]
+                },
+                {
+                    name: '11-13节',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        show: true,
+                        position: 'insideLeft'
+                    },
+                    data: [673, 447, 506, 496, 471, 244, 161]
+                },
+                {
+                    name: '总计',
+                    type: 'line',
+                    lineStyle:{
+                        opacity : 0,
+                    },
+                    label:{
+                        show: true,
+                        textStyle:{
+                            color:'#345'
+                        }
+                    },
+                    data: [2379, 3257, 1482, 3137, 2165, 1321, 880]
+                }
+            ]
+        };;
+        if (option && typeof option === "object") {
+            w7.setOption(option, true);
+        }
+    </script>
+</body>
+
+</html>

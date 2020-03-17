@@ -1,332 +1,141 @@
-<!DOCTYPE html>
-<html style="height: 100%">
-
 <head>
-    <meta charset="utf-8">
-    <title>开课情况统计</title>
-    <link rel="shortcut icon" href="http://gsmis.njust.edu.cn/images/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.6">
+  <title>数据统计</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://gsmis.njust.edu.cn/images/favicon.ico">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    html,
+    body {
+      overflow-x: hidden;
+      /* Prevent scroll on narrow devices */
+    }
+
+    body {
+      padding-top: 56px;
+    }
+
+    @media (max-width: 991.98px) {
+      .offcanvas-collapse {
+        position: fixed;
+        top: 56px;
+        /* Height of navbar */
+        bottom: 0;
+        left: 100%;
+        width: 100%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        overflow-y: auto;
+        visibility: hidden;
+        background-color: #343a40;
+        transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+      }
+
+      .offcanvas-collapse.open {
+        visibility: visible;
+        transform: translateX(-100%);
+      }
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      color: rgba(255, 255, 255, .75);
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-underline .nav-link {
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      font-size: .875rem;
+      color: #6c757d;
+    }
+
+    .nav-underline .nav-link:hover {
+      color: #007bff;
+    }
+
+    .nav-underline .active {
+      font-weight: 500;
+      color: #343a40;
+    }
+
+    .text-white-50 {
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .bg-purple {
+      background-color: #6f42c1;
+    }
+  </style>
 </head>
 
-<body style="height: 100%; margin: 0; padding: 10px;">
-    <center>
-        <h2>第五至七周开课情况统计</h2>
-         (<a href="moreInfo.html">各院系开课数统计</a>)
-    </center>
-    <div style="height: 5%"></div>
-    <div id="week5" style="height: 88%"></div>
-    <div style="height: 5%"></div>
-    <div style="height: 5%"></div>
-    <div id="week6" style="height: 88%"></div>
-    <div style="height: 5%"></div>
-    <div style="height: 5%"></div>
-    <div id="week7" style="height: 88%"></div>
-    <div style="height: 5%"></div>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
-    <script type="text/javascript">
-        var week5 = document.getElementById("week5");
-        var w5 = echarts.init(week5);
-        option = null;
-        option = {
-            title: {
-                text: '第五周开课人数统计（仅学生）'
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
-            },
-            legend: {
-                data: ['1-3节', '4-5节', '6-7节', '8-10节', '11-13节']
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'category',
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name: '1-3节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [340, 811, 432, 616, 509, 552, 551]
-                },
-                {
-                    name: '4-5节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [179, 291, 206, 343, 82, 61, 2]
-                },
-                {
-                    name: '6-7节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [157, 370, , 416, 306, 316, 61]
-                },
-                {
-                    name: '8-10节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [315, 363, , 502, 237, , ,]
-                },
-                {
-                    name: '11-13节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [568, 403, 532, 351, 158, 244, 111]
-                },
-                {
-                    name: '总计',
-                    type: 'line',
-                    lineStyle:{
-                        opacity : 0,
-                    },
-                    label:{
-                        show: true,
-                        textStyle:{
-                            color:'#345'
-                        }
-                    },
-                    data: [1559, 2238, 1170, 2228, 1292, 1173, 725]
-                }
-            ]
-        };;
-        if (option && typeof option === "object") {
-            w5.setOption(option, true);
-        }
-        var week6 = document.getElementById("week6");
-        var w6 = echarts.init(week6);
-        option = null;
-        option = {
-            title: {
-                text: '第六周开课人数统计（仅学生）'
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
-            },
-            legend: {
-                data: ['1-3节', '4-5节', '6-7节', '8-10节', '11-13节']
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'category',
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name: '1-3节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [421, 923, 503, 714, 677, 552, 538]
-                },
-                {
-                    name: '4-5节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [326, 482, 414, 515, 171, 61, 2]
-                },
-                {
-                    name: '6-7节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [308, 726, , 668, 401, 316, 61]
-                },
-                {
-                    name: '8-10节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [541, 506, , 697, 374, 22, ,]
-                },
-                {
-                    name: '11-13节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [624, 315, 414, 383, 421, 244, 111]
-                },
-                {
-                    name: '总计',
-                    type: 'line',
-                    lineStyle:{
-                        opacity : 0,
-                    },
-                    label:{
-                        show: true,
-                        textStyle:{
-                            color:'#345'
-                        }
-                    },
-                    data: [2220, 2952, 1331, 2977, 2044, 1195, 712]
-                }
-            ]
-        };;
-        if (option && typeof option === "object") {
-            w6.setOption(option, true);
-        }
-        var week7 = document.getElementById("week7");
-        var w7 = echarts.init(week7);
-        option = null;
-        option = {
-            title: {
-                text: '第七周开课人数统计（仅学生）'
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
-            },
-            legend: {
-                data: ['1-3节', '4-5节', '6-7节', '8-10节', '11-13节']
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'category',
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name: '1-3节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [482, 941, 553, 810, 715, 672, 658]
-                },
-                {
-                    name: '4-5节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [337, 517, 423, 515, 171, 67, ,]
-                },
-                {
-                    name: '6-7节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [313, 727, , 579, 401, 316, 61]
-                },
-                {
-                    name: '8-10节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [574, 625, , 737, 407, 22, ,]
-                },
-                {
-                    name: '11-13节',
-                    type: 'bar',
-                    stack: '总量',
-                    label: {
-                        show: true,
-                        position: 'insideLeft'
-                    },
-                    data: [673, 447, 506, 496, 471, 244, 161]
-                },
-                {
-                    name: '总计',
-                    type: 'line',
-                    lineStyle:{
-                        opacity : 0,
-                    },
-                    label:{
-                        show: true,
-                        textStyle:{
-                            color:'#345'
-                        }
-                    },
-                    data: [2379, 3257, 1482, 3137, 2165, 1321, 880]
-                }
-            ]
-        };;
-        if (option && typeof option === "object") {
-            w7.setOption(option, true);
-        }
-    </script>
-</body>
+<main role="main" class="container">
+  <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+    <img class="mr-3" src="logo.png" alt=""
+      height="48">
+    <div class="lh-1">
+      <h4 class="mb-0 text-white lh-1">在线教学开课情况统计</h6>
+      <small>更新于 2020/03/17</small>
+    </div>
+  </div>
 
-</html>
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom pb-2 mb-0">已统计数据</h6>
+    <div class="d-flex text-muted pt-3">
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark"><a href="students.html">第五至七周学生上课人数统计</a></strong>
+        统计了第五至七周每周上网课的学生人数，每一天按节次分段统计并进行当日汇总。
+      </p>
+    </div>
+    <div class="d-flex text-muted pt-3">
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark"><a href="moreInfo.html">第五至七周各院系开课情况统计</a></strong>
+        统计了第五至七周每周各个院系的开课数情况。
+      </p>
+    </div>
+    <div class="d-flex text-muted pt-3">
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark"><a href="coursesInWeek5.html">第五周每日开课数情况统计</a></strong>
+        统计了第五周每天所有院系开课总数的情况。
+      </p>
+    </div>
+    
+    <small class="d-block text-right mt-3">
+      <a href="#">That's All</a>
+    </small>
+  </div>
+
+</main>
