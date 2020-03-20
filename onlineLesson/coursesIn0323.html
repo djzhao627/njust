@@ -1,0 +1,551 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.6">
+  <title>数据统计</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://gsmis.njust.edu.cn/images/favicon.ico">
+  <style>
+    body {
+      font-size: .875rem;
+    }
+
+    .feather {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-bottom;
+    }
+
+    /*
+ * Sidebar
+ */
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      /* Behind the navbar */
+      padding: 48px 0 0;
+      /* Height of navbar */
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 5rem;
+      }
+    }
+
+    .sidebar-sticky {
+      position: relative;
+      top: 0;
+      height: calc(100vh - 48px);
+      padding-top: .5rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      /* Scrollable contents if viewport is shorter than content. */
+    }
+
+    .sidebar .nav-link {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .sidebar .nav-link .feather {
+      margin-right: 4px;
+      color: #727272;
+    }
+
+    .sidebar .nav-link.active {
+      color: #007bff;
+    }
+
+    .sidebar .nav-link:hover .feather,
+    .sidebar .nav-link.active .feather {
+      color: inherit;
+    }
+
+    .sidebar-heading {
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+
+    /*
+ * Navbar
+ */
+
+    .navbar-brand {
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      font-size: 1rem;
+      background-color: rgba(0, 0, 0, .25);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+    }
+
+    .navbar .navbar-toggler {
+      top: .25rem;
+      right: 1rem;
+    }
+
+    .navbar .form-control {
+      padding: .75rem 1rem;
+      border-width: 0;
+      border-radius: 0;
+    }
+
+    .form-control-dark {
+      color: #fff;
+      background-color: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .1);
+    }
+
+    .form-control-dark:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+    }
+  </style>
+</head>
+
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-2 mr-0" href="#">南京理工大学</a>
+  <!-- <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">数据统计</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <main class="col-md-10 col-lg-10 px-md-4 offset-md-1">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">当日所授课程浏览</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary" disabled>刷新</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" disabled>导出</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            2020/03/23
+          </button>
+        </div>
+      </div>
+
+      <h2>2020/03/23</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>开课院系</th>
+              <th>课程编号</th>
+              <th>课程名称</th>
+              <th>教师名称</th>
+              <th>上课地点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>材料科学与工程学院</td>
+              <td>B116B003</td>
+              <td>材料热力学</td>
+              <td>王雄</td>
+              <td>5-14</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>电子工程与光电技术学院</td>
+              <td>S104C024</td>
+              <td>现代通信技术</td>
+              <td>郭山红</td>
+              <td>5-12</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>公共事务学院</td>
+              <td>S115C057</td>
+              <td>公共项目管理研究</td>
+              <td>李晓燕</td>
+              <td>5-12</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>机械工程学院</td>
+              <td>S101C017</td>
+              <td>弹药系统总体技术</td>
+              <td>钱建平</td>
+              <td>5-9</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>机械工程学院</td>
+              <td>S101C098</td>
+              <td>数字通信与遥测技术</td>
+              <td>周严</td>
+              <td>5-10</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>计算机科学与工程学院</td>
+              <td>L106C009</td>
+              <td>Pattern Recognition</td>
+              <td>练智超</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>计算机科学与工程学院</td>
+              <td>S106C039</td>
+              <td>侧信道攻击与防护</td>
+              <td>杨威</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>计算机科学与工程学院</td>
+              <td>S106S001</td>
+              <td>传感网系统实践</td>
+              <td>陆一飞</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>经济管理学院</td>
+              <td>B107Z010</td>
+              <td>管理评价与决策分析专题</td>
+              <td>程龙生(主讲)、江文奇(主讲)</td>
+              <td>5-12</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>经济管理学院</td>
+              <td>S107B051</td>
+              <td>研究方法专题</td>
+              <td>王毅</td>
+              <td>5-10</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>经济管理学院</td>
+              <td>S107B071</td>
+              <td>Intermediate International Trade: Theory and Practice</td>
+              <td>尤宏兵</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>经济管理学院</td>
+              <td>S107C004</td>
+              <td>电子商务管理决策建模</td>
+              <td>李莉</td>
+              <td>5-12</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>经济管理学院</td>
+              <td>S107C070</td>
+              <td>金融危机管理案例</td>
+              <td>刘黄金</td>
+              <td>5-12</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>经济管理学院</td>
+              <td>S107C072</td>
+              <td>金融研究专题</td>
+              <td>杜玉兰(主讲)、李涛(主讲)、王玉东(主讲)</td>
+              <td>5-16</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>经济管理学院</td>
+              <td>S107C100</td>
+              <td>The Essential Readings in Management</td>
+              <td>朱必祥</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>经济管理学院</td>
+              <td>S107C162</td>
+              <td>电子商务管理决策</td>
+              <td>李莉</td>
+              <td>5-12</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>经济管理学院</td>
+              <td>S107M002</td>
+              <td>商务英语</td>
+              <td>王杏桃</td>
+              <td>5-6</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>经济管理学院</td>
+              <td>S107M007</td>
+              <td>组织行为学</td>
+              <td>陈兴淋</td>
+              <td>5-6</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>经济管理学院</td>
+              <td>S107M008</td>
+              <td>战略管理</td>
+              <td>邵一明</td>
+              <td>5-6</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>经济管理学院</td>
+              <td>S107M104</td>
+              <td>报表分析与财务诊断</td>
+              <td>刘义鹃</td>
+              <td>5-</td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>理学院</td>
+              <td>B113B010</td>
+              <td>固体量子理论</td>
+              <td>董召阳</td>
+              <td>5-20</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>理学院</td>
+              <td>S113A010</td>
+              <td>数学建模与系统仿真</td>
+              <td>许春根</td>
+              <td>5-10</td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td>理学院</td>
+              <td>S113A010</td>
+              <td>数学建模与系统仿真</td>
+              <td>谢建春</td>
+              <td>5-10</td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>理学院</td>
+              <td>S113A013</td>
+              <td>智能优化算法</td>
+              <td>朱元国</td>
+              <td>5-10</td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>理学院</td>
+              <td>S113C012</td>
+              <td>Spectral Theory of linear operators on Hilbert Spaces</td>
+              <td>黄振友</td>
+              <td>5-14</td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td>理学院</td>
+              <td>S113C036</td>
+              <td>高层建筑施工技术</td>
+              <td>孙巍巍</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td>理学院</td>
+              <td>S113C096</td>
+              <td>激光物质相互作用原理与应用</td>
+              <td>袁玲</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td>能源与动力工程学院</td>
+              <td>S108C003</td>
+              <td>多相流动与传热</td>
+              <td>郑林</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>能源与动力工程学院</td>
+              <td>S108C027</td>
+              <td>新能源功率转换技术</td>
+              <td>应展烽</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td>能源与动力工程学院</td>
+              <td>S108C041</td>
+              <td>湍流导论</td>
+              <td>周毅</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>31</td>
+              <td>能源与动力工程学院</td>
+              <td>S108C044</td>
+              <td>弹道测试与试验技术</td>
+              <td>刘东尧(主讲)、李岩</td>
+              <td>5-8</td>
+            </tr>
+            <tr>
+              <td>32</td>
+              <td>设计艺术与传媒学院</td>
+              <td>S109B014</td>
+              <td>设计语义学</td>
+              <td>周明</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td>设计艺术与传媒学院</td>
+              <td>S109C005</td>
+              <td>广告专题研究</td>
+              <td>陈尚荣</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>34</td>
+              <td>设计艺术与传媒学院</td>
+              <td>S109C020</td>
+              <td>媒介融合前沿研究</td>
+              <td>宋嘉伟</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>35</td>
+              <td>设计艺术与传媒学院</td>
+              <td>S109C021</td>
+              <td>设计艺术史专题研究</td>
+              <td>曹田</td>
+              <td>5-11</td>
+            </tr>
+            <tr>
+              <td>36</td>
+              <td>设计艺术与传媒学院</td>
+              <td>S109C023</td>
+              <td>用户研究与交互设计</td>
+              <td>姜斌</td>
+              <td>5-14</td>
+            </tr>
+            <tr>
+              <td>37</td>
+              <td>外国语学院</td>
+              <td>S114A007</td>
+              <td>综合英语</td>
+              <td>陆娇萍</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>38</td>
+              <td>外国语学院</td>
+              <td>S114A007</td>
+              <td>综合英语</td>
+              <td>蔡建宁</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>39</td>
+              <td>外国语学院</td>
+              <td>S114A008</td>
+              <td>英语听说</td>
+              <td>许明</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>40</td>
+              <td>外国语学院</td>
+              <td>S114A008</td>
+              <td>英语听说</td>
+              <td>严培华</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>41</td>
+              <td>外国语学院</td>
+              <td>S114A008</td>
+              <td>英语听说</td>
+              <td>严培华</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>42</td>
+              <td>外国语学院</td>
+              <td>S114A009</td>
+              <td>实用口语</td>
+              <td>Harry</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>43</td>
+              <td>外国语学院</td>
+              <td>S114A009</td>
+              <td>实用口语</td>
+              <td>Harry</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>44</td>
+              <td>外国语学院</td>
+              <td>S114A020</td>
+              <td>英语演讲</td>
+              <td>陈政武</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>45</td>
+              <td>外国语学院</td>
+              <td>S114B007</td>
+              <td>论文写作与研讨</td>
+              <td>王育平</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>46</td>
+              <td>外国语学院</td>
+              <td>S114B018</td>
+              <td>学术写作（日语）</td>
+              <td>赵熠玮</td>
+              <td>5-16</td>
+            </tr>
+            <tr>
+              <td>47</td>
+              <td>外国语学院</td>
+              <td>S114C043</td>
+              <td>外事翻译</td>
+              <td>韩媛媛</td>
+              <td>5-15</td>
+            </tr>
+            <tr>
+              <td>48</td>
+              <td>自动化学院</td>
+              <td>S110C041</td>
+              <td>网络系统的信息处理技术</td>
+              <td>苏智勇</td>
+              <td>5-13</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
