@@ -196,10 +196,10 @@
     // 第六周
     else if ((day >= 30 && day <= 31) || (day >= 1 && day <= 5)) {
       weekNumber = 6;
-      if (day <= 31) {
-        dayNumber = day - 30;
+      if (day <= 5) {
+        dayNumber = day - 1 + 2;
       } else {
-        dayNumber = day - 1;
+        dayNumber = day - 30;
       }
     }
     // 第七周
