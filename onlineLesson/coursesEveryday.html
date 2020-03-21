@@ -259,7 +259,7 @@
 
     // 获取课程数据
     let courses = [];
-    $.get("http://qiniu.djzhao.cn/courses.json", function (res) {
+    $.get("https://gitee.com/djzhao/upload/raw/master/courses.json", function (res) {
       courses = res;
       refeshData(courses, 23);
       $("#loading").hide();
