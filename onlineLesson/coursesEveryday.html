@@ -127,7 +127,7 @@
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="index.html">数据统计</a>
+      <a class="nav-link" href="https://github.com/djzhao627/njust/issues" target="__blank">反馈 / feedback</a>
     </li>
   </ul>
 </nav>
@@ -135,7 +135,7 @@
 <div class="container-fluid">
   <div class="row">
 
-    <main class="col-md-10 col-lg-10 px-md-4 offset-md-1">
+    <main class="col-md-12 col-lg-12 px-md-4">
       <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">当日所授课程浏览 </h1>
@@ -165,6 +165,7 @@
               <th>课程编号</th>
               <th>课程名称</th>
               <th>教师名称</th>
+              <th>群组</th>
               <th>已选人数</th>
             </tr>
           </thead>
@@ -177,7 +178,7 @@
 </div>
 <script>
   // 表格字段
-  // department	courseNo	publicClass	courseName	courseTime	planPeople	className	teacherNo	teacherName	classCapacity	SelectedPeople	applicableStudent	applicableDepart	applicableMajor	applicableGrade	week	description	classLocation	classDesc	remark	onlinePlatform	QQ	other
+  // department	courseNo	publicClass	courseName	courseTime	planPeople	className	teacherNo	teacherName	classCapacity	selectedPeople	applicableStudent	applicableDepart	applicableMajor	applicableGrade	week	description	classLocation	classDesc	remark	onlinePlatform	group	other
 
   // 刷新数据
   function refeshData(courses, day) {
@@ -245,7 +246,8 @@
     result.forEach(function (item, index) {
       rows += "<tr><td>" + (index + 1) +
         "</td><td>" + item.department + "</td><td>" + item.courseNo + "</td><td>" + item.courseName +
-        "</td><td>" + item.teacherName + "</td><td>" + item.SelectedPeople + "</td></tr>";
+        "</td><td>" + item.teacherName + "</td><td>" + item.group + "</td><td>" + item.selectedPeople +
+        "</td></tr>";
     });
     $("#rows").html(rows);
 
@@ -278,7 +280,7 @@
     });
 
     // 打印数据
-    $("#print").click(function() {
+    $("#print").click(function () {
       $("#print-area").printThis();
     })
   });
