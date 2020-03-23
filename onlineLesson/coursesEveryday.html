@@ -304,12 +304,13 @@
       if (e.keyCode == 13) {
         let input = $("#search").val();
         $("#loading").show();
-        let result = courses.filter(function (course) {
+         let result = courses.filter(function (course) {
           let macth = course.courseName.indexOf(input) > -1 
           || course.courseNo.indexOf(input) > -1 
           || course.teacherName.indexOf(input) > -1 ;
           return macth;
         });
+        let rows = '';
         result.forEach(function (item, index) {
           rows += "<tr><td>" + (index + 1) +
             "</td><td>" + item.department + "</td><td>" + item.courseNo + "</td><td>" + item.courseName +
