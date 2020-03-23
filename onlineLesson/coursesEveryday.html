@@ -123,8 +123,8 @@
   <!-- <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
     data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+  </button> -->
+  <input id="search" class="form-control form-control-dark w-100" type="text" placeholder="搜索课程" aria-label="Search">
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <a class="nav-link" href="https://github.com/djzhao627/njust/issues" target="__blank">反馈 / feedback</a>
@@ -181,7 +181,12 @@
   // department	courseNo	publicClass	courseName	courseTime	planPeople	className	teacherNo	teacherName	classCapacity	selectedPeople	applicableStudent	applicableDepart	applicableMajor	applicableGrade	week	description	classLocation	classDesc	remark	onlinePlatform	group	other
 
   // 刷新数据
-  function refeshData(courses, day) {
+  function refeshData(courses, month, day) {
+    let correctDate = (month == 3 && day >= 23 && day <= 31) || (month == 4 && day >= 1 && day <= 12);
+    if (!correctDate) {
+      $("#rows").html("<h3>暂无数据</h3>");
+      return;
+    }
     $("#loading").show();
     // 周数
     let weekNumber = 5;
@@ -249,7 +254,11 @@
         "</td><td>" + item.teacherName + "</td><td>" + item.group + "</td><td>" + item.selectedPeople +
         "</td></tr>";
     });
-    $("#rows").html(rows);
+    if (result.length === 0) {
+      $("#rows").html("<h3>暂无数据</h3>");
+    } else {
+      $("#rows").html(rows);
+    }
 
     setInterval(function () {
       $("#loading").hide();
@@ -263,7 +272,7 @@
     let courses = [];
     $.get("./courses.json", function (res) {
       courses = res;
-      refeshData(courses, 23);
+      refeshData(courses, 3, 23);
       $("#loading").hide();
     });
 
@@ -275,13 +284,47 @@
     }).on("changeDate", function (e) {
       let selectedDate = $("#date-selected").val();
       $("#date-title").text(selectedDate);
+      // 2020/03/20
+      let year = selectedDate.substring(0, 4);
+      let month = selectedDate.substring(5, 7);
       let day = selectedDate.substring(8, 10);
-      refeshData(courses, day);
+      if (year != "2020" || (month != "03" && month != "04")) {
+        $("#rows").html("<h3>暂无数据</h3>");
+        return;
+      }
+      refeshData(courses, month, day);
     });
 
     // 打印数据
     $("#print").click(function () {
       $("#print-area").printThis();
-    })
+    });
+
+    $("#search").keydown(function (e) {
+      if (e.keyCode == 13) {
+        let input = $("#search").val();
+        $("#loading").show();
+        let result = courses.filter(function (course) {
+          let macth = course.courseName.indexOf(input) > -1 
+          || course.courseNo.indexOf(input) > -1 
+          || course.teacherName.indexOf(input) > -1 ;
+          return macth;
+        });
+        result.forEach(function (item, index) {
+          rows += "<tr><td>" + (index + 1) +
+            "</td><td>" + item.department + "</td><td>" + item.courseNo + "</td><td>" + item.courseName +
+            "</td><td>" + item.teacherName + "</td><td>" + item.group + "</td><td>" + item.selectedPeople +
+            "</td></tr>";
+        });
+        if (result.length === 0) {
+          $("#rows").html("<h3>暂无数据</h3>");
+        } else {
+          $("#rows").html(rows);
+        }
+        $("#search").val("");
+        $("#date-title").text(input === "" ? "查询全部" : "搜索“" + input + "”");
+        $("#loading").hide();
+      }
+    });
   });
 </script>
