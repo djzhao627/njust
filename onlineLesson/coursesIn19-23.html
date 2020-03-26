@@ -449,7 +449,7 @@
             macth = course.courseName.indexOf(input) > -1
               || course.courseNo.indexOf(input) > -1
               || course.teacherName.indexOf(input) > -1;
-          } catch {
+          } catch(err) {
             macth = false;
           }
           return macth;
