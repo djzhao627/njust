@@ -148,13 +148,13 @@
       <a href="https://github.com/djzhao627/njust" target="__blank">That's All</a>
     </small>
   </div>
-
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.js"></script>
   <script>
     function author() {
       var x;
       var code = prompt("此操作需要授权", "授权码");
-      if (code === "njust") {
-        window.location = "./coursesIn19-23.html";
+      if (md5(code + "djzhao") === "ce28ddcb94c2c04f8e3f15dd66125b92") {
+        window.location = "./coursesIn19-23.html?code=" + code;
       }
     }
   </script>
