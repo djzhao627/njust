@@ -309,7 +309,7 @@
       try {
         macth = course.week.indexOf(week) > -1
           || (weekInterval[0] < week && week < weekInterval[1]);
-      } catch {
+      } catch(err) {
         macth = false;
       }
       return macth;
@@ -407,7 +407,7 @@
 
     // 获取课程数据
     let courses = [];
-    $.get("./coursesIn19-23.json", function (res) {
+    $.get("https://qiniudownload.hulianjun.com/djzhao/coursesIn19-23.json", function (res) {
       courses = res;
       // refeshData(courses, 3, 23);
       filterByWeek(courses, 19);

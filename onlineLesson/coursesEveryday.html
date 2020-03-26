@@ -270,7 +270,7 @@
 
     // 获取课程数据
     let courses = [];
-    $.get("./courses.json", function (res) {
+    $.get("https://qiniudownload.hulianjun.com/djzhao/courses.json", function (res) {
       courses = res;
       refeshData(courses, 3, 23);
       $("#loading").hide();
