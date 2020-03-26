@@ -1,0 +1,467 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.6">
+  <title>数据统计</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://gsmis.njust.edu.cn/images/favicon.ico">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+  <link href="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/printThis/1.15.0/printThis.min.js"></script>
+  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      font-size: .875rem;
+    }
+
+    .feather {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-bottom;
+    }
+
+    /*
+ * Sidebar
+ */
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      /* Behind the navbar */
+      padding: 48px 0 0;
+      /* Height of navbar */
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 5rem;
+      }
+    }
+
+    .sidebar-sticky {
+      position: relative;
+      top: 0;
+      height: calc(100vh - 48px);
+      padding-top: .5rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      /* Scrollable contents if viewport is shorter than content. */
+    }
+
+    .sidebar .nav-link {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .sidebar .nav-link .feather {
+      margin-right: 4px;
+      color: #727272;
+    }
+
+    .sidebar .nav-link.active {
+      color: #007bff;
+    }
+
+    .sidebar .nav-link:hover .feather,
+    .sidebar .nav-link.active .feather {
+      color: inherit;
+    }
+
+    .sidebar-heading {
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+
+    /*
+ * Navbar
+ */
+
+    .navbar-brand {
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      font-size: 1rem;
+      /* background-color: rgba(0, 0, 0, .25);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25); */
+    }
+
+    .navbar .navbar-toggler {
+      top: .25rem;
+      right: 1rem;
+    }
+
+    .navbar .form-control {
+      padding: .75rem 1rem;
+      border-width: 0;
+      border-radius: 0;
+    }
+
+    .form-control-dark {
+      color: #fff;
+      background-color: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .1);
+    }
+
+    .form-control-dark:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+    }
+  </style>
+</head>
+
+
+<nav class="navbar navbar-dark sticky-top bg-info flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-2 mr-0" href="index.html">南京理工大学</a>
+  <!-- <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <input id="search" class="form-control form-control-dark w-100" type="text" placeholder="搜索课程" aria-label="Search">
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="https://github.com/djzhao627/njust/issues" target="__blank">反馈 / feedback</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <main class="col-md-12 col-lg-12 px-md-4">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">周课程浏览 </h1>
+        <div id="loading" class="spinner-border text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button id="print" type="button" class="btn btn-sm btn-outline-secondary">导出</button>
+          </div>
+          <!-- <input id="date-selected" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle datepicker"
+            value="2020/03/23" /> -->
+          <!-- <span data-feather="calendar">This week</span>
+          </button> -->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              第19周课程列表
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" week="19" href="#">第19周</a>
+              <a class="dropdown-item" week="20" href="#">第20周</a>
+              <a class="dropdown-item" week="21" href="#">第21周</a>
+              <a class="dropdown-item" week="22" href="#">第22周</a>
+              <a class="dropdown-item" week="23" href="#">第23周</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 图表 -->
+      <div class="my-4 w-100" id="myChart"style="width:100%; height:250px;"></div>
+
+      <h3 id="date-title">第19周</h3>
+      <div id="print-area" class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>开课院系</th>
+              <th>课程编号</th>
+              <th>课程名称</th>
+              <th>教师名称</th>
+              <th>周次</th>
+              <th>已选人数</th>
+            </tr>
+          </thead>
+          <tbody id="rows">
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+<script>
+  // 表格字段
+  // department	courseNo	publicClass	courseName	courseTime	planPeople	className	teacherNo	teacherName	classCapacity	selectedPeople	applicableStudent	applicableDepart	applicableMajor	applicableGrade	week	description	classLocation	classDesc	remark	onlinePlatform	group	other
+
+  // 刷新数据（按天）
+  function refeshData(courses, month, day) {
+    let correctDate = (month == 3 && day >= 23 && day <= 31) || (month == 4 && day >= 1 && day <= 12);
+    if (!correctDate) {
+      $("#rows").html("<h3>暂无数据</h3>");
+      return;
+    }
+    $("#loading").show();
+    // 周数
+    let weekNumber = 5;
+    // 日数
+    let dayNumber = 0;
+    const days = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
+
+    // 第五周
+    if (day >= 23 && day <= 29) {
+      weekNumber = 5;
+      dayNumber = day - 23;
+    }
+    // 第六周
+    else if ((day >= 30 && day <= 31) || (day >= 1 && day <= 5)) {
+      weekNumber = 6;
+      if (day <= 5) {
+        dayNumber = day - 1 + 2;
+      } else {
+        dayNumber = day - 30;
+      }
+    }
+    // 第七周
+    else if (day >= 6 && day <= 12) {
+      weekNumber = 7;
+      dayNumber = day - 6;
+    } else {
+      weekNumber = 0;
+      dayNumber = 0;
+      $("#loading").hide();
+      $("#rows").html("<h3>暂无数据</h3>");
+      return;
+    }
+    // 筛选数据
+    let result = [];
+    switch (weekNumber) {
+      case 5:
+        result = courses.filter(function (course) {
+          if (course.week.indexOf("5-") > -1) {
+            return course.description.indexOf(days[dayNumber]) > -1;
+          }
+        });
+        break;
+      case 6:
+        result = courses.filter(function (course) {
+          if (course.week.indexOf("5-") > -1 || course.week.indexOf("6-") > -1) {
+            return course.description.indexOf(days[dayNumber]) > -1;
+          }
+        });
+        break;
+      case 7:
+        result = courses.filter(function (course) {
+          if ((course.week.indexOf("5-") > -1 && course.week.indexOf("-6") == -1) ||
+            course.week.indexOf("6-") > -1 ||
+            course.week.indexOf("7-") > -1) {
+            return course.description.indexOf(days[dayNumber]) > -1;
+          }
+        });
+        break;
+    }
+
+    let rows = '';
+    result.forEach(function (item, index) {
+      rows += "<tr><td>" + (index + 1) +
+        "</td><td>" + item.department + "</td><td>" + item.courseNo + "</td><td>" + item.courseName +
+        "</td><td>" + item.teacherName + "</td><td>" + item.week + "</td><td>" + item.selectedPeople +
+        "</td></tr>";
+    });
+    if (result.length === 0) {
+      $("#rows").html("<h3>暂无数据</h3>");
+    } else {
+      $("#rows").html(rows);
+    }
+
+    setInterval(function () {
+      $("#loading").hide();
+    }, 500);
+  };
+
+  // 按周筛选
+  function filterByWeek(courses, week) {
+    $("#dropdownMenuButton").text("第" + week + "周");
+    $("#loading").show();
+    let result = courses.filter(function (course) {
+      weekInterval = course.week.split("-");
+      let macth = false;
+      try {
+        macth = course.week.indexOf(week) > -1
+          || (weekInterval[0] < week && week < weekInterval[1]);
+      } catch {
+        macth = false;
+      }
+      return macth;
+    });
+    let rows = '';
+    let dayCourse = [0, 0, 0, 0, 0, 0, 0];
+    result.forEach(function (item, index) {
+      if (item.description.indexOf("星期一") > -1) {
+        dayCourse[0]++;
+      }
+      if (item.description.indexOf("星期二") > -1) {
+        dayCourse[1]++;
+      }
+      if (item.description.indexOf("星期三") > -1) {
+        dayCourse[2]++;
+      }
+      if (item.description.indexOf("星期四") > -1) {
+        dayCourse[3]++;
+      }
+      if (item.description.indexOf("星期五") > -1) {
+        dayCourse[4]++;
+      }
+      if (item.description.indexOf("星期六") > -1) {
+        dayCourse[5]++;
+      }
+      if (item.description.indexOf("星期日") > -1) {
+        dayCourse[6]++;
+      }
+      rows += "<tr><td>" + (index + 1) +
+        "</td><td>" + item.department + "</td><td>" + item.courseNo + "</td><td>" + item.courseName +
+        "</td><td>" + item.teacherName + "</td><td>" + item.week + "</td><td>" + item.selectedPeople +
+        "</td></tr>";
+    });
+    if (result.length === 0) {
+      $("#rows").html("<h3>暂无数据</h3>");
+    } else {
+      $("#rows").html(rows);
+    }
+    $("#date-title").text("第" + week + "周课程列表");
+    $("#loading").hide();
+    // 更新图表
+    let weekChart = document.getElementById("myChart");
+    let chart = echarts.init(weekChart);
+    option = null;
+    option = {
+      title: {
+        text: '第' + week + '周每日开课数'
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+          type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+      },
+      legend: {
+        data: ['开课总数']
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        axisLabel: {
+          rotate: 0,
+        },
+        type: 'category',
+        data: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          name: '总开课数',
+          type: 'bar',
+          stack: '总量',
+          label: {
+            show: true,
+            position: 'inside'
+          },
+          data: dayCourse
+        }
+      ]
+    };
+    if (option && typeof option === "object") {
+      chart.setOption(option, true);
+    }
+  };
+
+  $(function () {
+
+    let w19 = [67, 81, 51, 79]
+
+    // 获取课程数据
+    let courses = [];
+    $.get("./coursesIn19-23.json", function (res) {
+      courses = res;
+      // refeshData(courses, 3, 23);
+      filterByWeek(courses, 19);
+      $("#loading").hide();
+    });
+
+    // 切换日期
+    $('.datepicker').datepicker({
+      format: 'yyyy/mm/dd',
+      language: 'zh-CN',
+      autoclose: true
+    }).on("changeDate", function (e) {
+      let selectedDate = $("#date-selected").val();
+      $("#date-title").text(selectedDate);
+      // 2020/03/20
+      let year = selectedDate.substring(0, 4);
+      let month = selectedDate.substring(5, 7);
+      let day = selectedDate.substring(8, 10);
+      if (year != "2020" || (month != "03" && month != "04")) {
+        $("#rows").html("<h3>暂无数据</h3>");
+        return;
+      }
+      refeshData(courses, month, day);
+    });
+
+    // 打印数据
+    $("#print").click(function () {
+      $("#print-area").printThis();
+    });
+
+    // 搜索
+    $("#search").keydown(function (e) {
+      if (e.keyCode == 13) {
+        let input = $("#search").val();
+        $("#loading").show();
+        let result = courses.filter(function (course) {
+          let macth = false;
+          try {
+            macth = course.courseName.indexOf(input) > -1
+              || course.courseNo.indexOf(input) > -1
+              || course.teacherName.indexOf(input) > -1;
+          } catch {
+            macth = false;
+          }
+          return macth;
+        });
+        let rows = '';
+        result.forEach(function (item, index) {
+          rows += "<tr><td>" + (index + 1) +
+            "</td><td>" + item.department + "</td><td>" + item.courseNo + "</td><td>" + item.courseName +
+            "</td><td>" + item.teacherName + "</td><td>" + item.week + "</td><td>" + item.selectedPeople +
+            "</td></tr>";
+        });
+        if (result.length === 0) {
+          $("#rows").html("<h3>暂无数据</h3>");
+        } else {
+          $("#rows").html(rows);
+        }
+        $("#search").val("");
+        $("#date-title").text(input === "" ? "查询全部" : "搜索“" + input + "”");
+        $("#loading").hide();
+      }
+    });
+    // 选周
+    $(".dropdown-item").click(function () {
+      filterByWeek(courses, $(this).attr("week"));
+    })
+
+  });
+
+
+</script>
