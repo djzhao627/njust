@@ -314,7 +314,7 @@
 
     // 获取课程数据
     let courses = [];
-    $.get("./coursesApplicationAreaIn2019Fall.json", function (res) {
+    $.get("https://qiniudownload.hulianjun.com/djzhao/coursesApplicationAreaIn2019Fall.json", function (res) {
       courses = res;
       // console.log(courses);
       filterByType(courses, 1);

@@ -375,7 +375,7 @@
 
     // 获取课程数据
     let courses = [];
-    $.get("./coursesApplicationAreaInAll.json", function (res) {
+    $.get("https://qiniudownload.hulianjun.com/djzhao/coursesApplicationAreaInAll.json", function (res) {
       courses = res;
       // console.log(courses);
       filterByType(courses, 1);
