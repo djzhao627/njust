@@ -107,7 +107,7 @@
     <img class="mr-3" src="logo.png" alt="" height="48">
     <div class="lh-1">
       <h4 class="mb-0 text-white lh-1">在线教学开课情况统计</h6>
-        <small>更新于 2020/03/26</small>
+        <small>更新于 2020/04/07</small>
     </div>
   </div>
 
@@ -139,8 +139,20 @@
     </div>
     <div class="d-flex text-muted pt-3">
       <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark"><a onclick="author()" href="#">第19至23周开课情况列表（授权访问）</a></strong>
+        <strong class="d-block text-gray-dark"><a onclick="author('./coursesIn19-23.html')" href="#">第19至23周开课情况列表（授权访问）</a></strong>
         展示了第19周至第23周每周的开课信息。
+      </p>
+    </div>
+    <div class="d-flex text-muted pt-3">
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark"><a onclick="author('./coursesApplicationAreaIn2019Fall.html')" href="#">2019秋学期各专业领域适用课程（授权访问）</a></strong>
+        2019秋学期各专业领域适用课程清单信息。
+      </p>
+    </div>
+    <div class="d-flex text-muted pt-3">
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark"><a onclick="author('./coursesApplicationAreaInAll.html')" href="#">各个专业硕士领域课程（授权访问）</a></strong>
+        各个专业硕士领域课程清单信息。
       </p>
     </div>
 
@@ -150,11 +162,11 @@
   </div>
   <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.js"></script>
   <script>
-    function author() {
+    function author(url) {
       var x;
       var code = prompt("此操作需要授权", "授权码");
       if (md5(code + "djzhao") === "ce28ddcb94c2c04f8e3f15dd66125b92") {
-        window.location = "./coursesIn19-23.html?code=" + code;
+        window.location = url + "?code=" + code;
       }
     }
   </script>

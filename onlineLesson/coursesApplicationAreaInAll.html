@@ -1,0 +1,431 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.6">
+  <title>数据统计</title>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.js"></script>
+  <script>
+    function GetQueryString(name) {
+      let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      let r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    }
+    let code = GetQueryString("code");
+    if (md5(code + "djzhao") !== "ce28ddcb94c2c04f8e3f15dd66125b92") {
+      window.history.back();
+    }
+  </script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://gsmis.njust.edu.cn/images/favicon.ico">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+  <link href="https://cdn.bootcss.com/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/printThis/1.15.0/printThis.min.js"></script>
+  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      font-size: .875rem;
+    }
+
+    .feather {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-bottom;
+    }
+
+    /*
+ * Sidebar
+ */
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      /* Behind the navbar */
+      padding: 48px 0 0;
+      /* Height of navbar */
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 5rem;
+      }
+    }
+
+    .sidebar-sticky {
+      position: relative;
+      top: 0;
+      height: calc(100vh - 48px);
+      padding-top: .5rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      /* Scrollable contents if viewport is shorter than content. */
+    }
+
+    .sidebar .nav-link {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .sidebar .nav-link .feather {
+      margin-right: 4px;
+      color: #727272;
+    }
+
+    .sidebar .nav-link.active {
+      color: #007bff;
+    }
+
+    .sidebar .nav-link:hover .feather,
+    .sidebar .nav-link.active .feather {
+      color: inherit;
+    }
+
+    .sidebar-heading {
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+
+    /*
+ * Navbar
+ */
+
+    .navbar-brand {
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      font-size: 1rem;
+      /* background-color: rgba(0, 0, 0, .25);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25); */
+    }
+
+    .navbar .navbar-toggler {
+      top: .25rem;
+      right: 1rem;
+    }
+
+    .navbar .form-control {
+      padding: .75rem 1rem;
+      border-width: 0;
+      border-radius: 0;
+    }
+
+    .form-control-dark {
+      color: #fff;
+      background-color: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .1);
+    }
+
+    .form-control-dark:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+    }
+  </style>
+</head>
+
+<nav class="navbar navbar-dark sticky-top bg-info flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-2 mr-0" href="index.html">南京理工大学</a>
+  <!-- <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <input id="search" class="form-control form-control-dark w-100" type="text" placeholder="搜索课程" aria-label="Search">
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="https://github.com/djzhao627/njust/issues" target="__blank">反馈 / feedback</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <main class="col-md-12 col-lg-12 px-md-4">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">各个专业硕士领域课程 </h1>
+        <div id="loading" class="spinner-border text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="btn-toolbar mb-3 mb-md-1">
+          <!-- <input id="date-selected" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle datepicker"
+            value="2020/03/23" /> -->
+          <!-- <span data-feather="calendar">This week</span>
+          </button> -->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              EMBA硕士
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" type="1" href="#">EMBA硕士</a>
+              <a class="dropdown-item" type="2" href="#">安全工程 </a>
+              <a class="dropdown-item" type="3" href="#">兵器工程</a>
+              <a class="dropdown-item" type="4" href="#">材料工程（中法）</a>
+              <a class="dropdown-item" type="5" href="#">材料工程</a>
+              <a class="dropdown-item" type="6" href="#">车辆工程</a>
+              <a class="dropdown-item" type="7" href="#">电气工程</a>
+              <a class="dropdown-item" type="8" href="#">电子与通信工程</a>
+              <a class="dropdown-item" type="9" href="#">动力工程</a>
+              <a class="dropdown-item" type="10" href="#">法律硕士（法）</a>
+              <a class="dropdown-item" type="11" href="#">法律硕士（非法）</a>
+              <a class="dropdown-item" type="12" href="#">翻译硕士</a>
+              <a class="dropdown-item" type="13" href="#">工商管理硕士</a>
+              <a class="dropdown-item" type="14" href="#">工业工程</a>
+              <a class="dropdown-item" type="15" href="#">工业设计工程</a>
+              <a class="dropdown-item" type="16" href="#">公共管理硕士</a>
+              <a class="dropdown-item" type="17" href="#">光学工程</a>
+              <a class="dropdown-item" type="18" href="#">国际商务硕士</a>
+              <a class="dropdown-item" type="19" href="#">航空工程控制工程</a>
+              <a class="dropdown-item" type="20" href="#">航天工程</a>
+              <a class="dropdown-item" type="21" href="#">化学工程</a>
+              <a class="dropdown-item" type="22" href="#">环境工程</a>
+              <a class="dropdown-item" type="23" href="#">会计硕士</a>
+              <a class="dropdown-item" type="24" href="#">机械工程（中法）</a>
+              <a class="dropdown-item" type="25" href="#">机械工程</a>
+              <a class="dropdown-item" type="26" href="#">集成电路工程</a>
+              <a class="dropdown-item" type="27" href="#">计算机技术</a>
+              <a class="dropdown-item" type="28" href="#">建筑与土木工程</a>
+              <a class="dropdown-item" type="29" href="#">交通运输工程1</a>
+              <a class="dropdown-item" type="30" href="#">金融硕士</a>
+              <a class="dropdown-item" type="31" href="#">控制工程</a>
+              <a class="dropdown-item" type="32" href="#">软件工程</a>
+              <a class="dropdown-item" type="33" href="#">社会工作</a>
+              <a class="dropdown-item" type="34" href="#">生物工程</a>
+              <a class="dropdown-item" type="35" href="#">生物医学工程</a>
+              <a class="dropdown-item" type="36" href="#">体育硕士</a>
+              <a class="dropdown-item" type="37" href="#">图书情报硕士</a>
+              <a class="dropdown-item" type="38" href="#">仪器仪表工程硕士</a>
+              <a class="dropdown-item" type="39" href="#">艺术硕士</a>
+              <a class="dropdown-item" type="40" href="#">制药工程</a>
+            </div>
+          </div>
+          <div class="btn-group mr-3">
+            <button id="print" type="button" class="btn btn-sm btn-outline-secondary">导出</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 图表 -->
+      <div class="my-4 w-100" id="myChart" style="width:100%; height:350px;"></div>
+      <h3 id="date-title">兵器工程</h3>
+      <div id="print-area" class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>课程编号</th>
+              <th>课程名称</th>
+              <th>学分</th>
+              <th>学期</th>
+              <th>考核方式</th>
+              <th>备注</th>
+            </tr>
+          </thead>
+          <tbody id="rows">
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+<script>
+  // 表格字段
+  // department	courseNo	publicClass	courseName	courseTime	planPeople	className	teacherNo	teacherName	classCapacity	selectedPeople	applicableStudent	applicableDepart	applicableMajor	applicableGrade	week	description	classLocation	classDesc	remark	onlinePlatform	group	other
+
+  // 更新图表
+  let weekChart = document.getElementById("myChart");
+  let chart = echarts.init(weekChart);
+  option = null;
+  option = {
+    title: {
+      text: '各领域开课数'
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+      }
+    },
+    legend: {
+      data: ['开课总数']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      axisLabel: {
+        rotate: 45,
+      },
+      type: 'category',
+      data: ['EMBA硕士',
+        '安全工程 ',
+        '兵器工程',
+        '材料工程（中法）',
+        '材料工程',
+        '车辆工程',
+        '电气工程',
+        '电子与通信工程',
+        '动力工程',
+        '法律硕士（法）',
+        '法律硕士（非法）',
+        '翻译硕士',
+        '工商管理硕士',
+        '工业工程',
+        '工业设计工程',
+        '公共管理硕士',
+        '光学工程',
+        '国际商务硕士',
+        '航空工程控制工程',
+        '航天工程',
+        '化学工程',
+        '环境工程',
+        '会计硕士',
+        '机械工程（中法）',
+        '机械工程',
+        '集成电路工程',
+        '计算机技术',
+        '建筑与土木工程',
+        '交通运输工程1',
+        '金融硕士',
+        '控制工程',
+        '软件工程',
+        '社会工作',
+        '生物工程',
+        '生物医学工程',
+        '体育硕士',
+        '图书情报硕士',
+        '仪器仪表工程硕士',
+        '艺术硕士',
+        '制药工程']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        name: '总开课数',
+        type: 'bar',
+        stack: '总量',
+        label: {
+          show: true,
+          position: 'inside'
+        },
+        data: [25, 27, 66, 32, 56, 32, 38, 35, 35, 24, 42, 24, 58, 41, 26, 36, 36, 23, 31, 33, 33, 34, 35, 23, 39, 26, 33, 36, 28, 32, 42, 30, 30, 31, 35, 36, 27, 49, 25, 27]
+      }
+    ]
+  };
+  if (option && typeof option === "object") {
+    chart.setOption(option, true);
+  }
+
+  // 格式化数据
+  function formatData(data) {
+    if (data == undefined) {
+      return "--";
+    }
+    return data;
+  };
+
+  // 按领域筛选
+  function filterByType(courses, type) {
+    let selectedTitle = $("[type='" + type + "'].dropdown-item").text();
+    $("#dropdownMenuButton").text(selectedTitle);
+    $("#loading").show();
+    let result = courses.filter(function (course) {
+      return course.type == type;
+    });
+    let rows = '';
+    let dayCourse = [0, 0, 0, 0, 0, 0, 0];
+    result.forEach(function (item, index) {
+      rows += "<tr><td>" + (index + 1) +
+        "</td><td>" + formatData(item.courseNo) + "</td><td>" + formatData(item.courseName) + "</td><td>" + formatData(item.coursePoint) +
+        "</td><td>" + formatData(item.term) + "</td><td>" + formatData(item.assessmentMethod) + "</td><td>" + formatData(item.remark) +
+        "</td></tr>";
+    });
+    if (result.length === 0) {
+      $("#rows").html("<h3>暂无数据</h3>");
+    } else {
+      $("#rows").html(rows);
+    }
+    $("#date-title").text(selectedTitle);
+    $("#loading").hide();
+  };
+
+  $(function () {
+
+    let w19 = [67, 81, 51, 79]
+
+    // 获取课程数据
+    let courses = [];
+    $.get("./coursesApplicationAreaInAll.json", function (res) {
+      courses = res;
+      // console.log(courses);
+      filterByType(courses, 1);
+      $("#loading").hide();
+    });
+
+    // 打印数据
+    $("#print").click(function () {
+      $("#print-area").printThis();
+    });
+
+    // 搜索
+    $("#search").keydown(function (e) {
+      if (e.keyCode == 13) {
+        let input = $("#search").val();
+        $("#loading").show();
+        let result = courses.filter(function (course) {
+          let macth = false;
+          try {
+            macth = course.courseName.indexOf(input) > -1
+              || course.courseNo.indexOf(input) > -1
+              || course.teacherName.indexOf(input) > -1;
+          } catch (err) {
+            macth = false;
+          }
+          return macth;
+        });
+        let rows = '';
+        result.forEach(function (item, index) {
+          rows += "<tr><td>" + (index + 1) +
+            "</td><td>" + formatData(item.courseNo) + "</td><td>" + formatData(item.courseName) + "</td><td>" + formatData(item.coursePoint) +
+            "</td><td>" + formatData(item.term) + "</td><td>" + formatData(item.assessmentMethod) + "</td><td>" + formatData(item.remark) +
+            "</td></tr>";
+        });
+        if (result.length === 0) {
+          $("#rows").html("<h3>暂无数据</h3>");
+        } else {
+          $("#rows").html(rows);
+        }
+        $("#search").val("");
+        $("#date-title").text(input === "" ? "查询全部" : "搜索“" + input + "”");
+        $("#loading").hide();
+      }
+    });
+    // 选周
+    $(".dropdown-item").click(function () {
+      filterByType(courses, $(this).attr("type"));
+    })
+
+  });
+
+
+</script>
